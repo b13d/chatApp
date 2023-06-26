@@ -4,6 +4,13 @@ import { ChatContext } from "../context/ChatContext";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
+interface IMessageInfo {
+  date: [nanoseconds: number, seconds: number];
+  id: string;
+  senderId: string;
+  text: string;
+}
+
 const Messages = () => {
   const [messages, setMessages] = useState<DocumentData>([]);
   const { data } = useContext(ChatContext);
@@ -21,11 +28,11 @@ const Messages = () => {
     };
   }, [data.chatId]);
 
-
   return (
     <div className="messages">
-      {messages.map((m:any) => { // ANY ANY ANY
-        return <Message message={m} key={m.id}/>;
+      {messages.map((m: IMessageInfo) => {
+        console.log(m);
+        return <Message message={m} key={m.id} />;
       })}
     </div>
   );

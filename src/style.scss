@@ -74,7 +74,8 @@
   justify-content: center;
 
   .container {
-    border: 1px solid white;
+    box-shadow: 3px 10px 11px 3px rgba(0, 0, 0, 0.39);
+    // border: 1px solid white;
     border-radius: 10px;
     width: 65%;
     height: 80%;
@@ -194,6 +195,7 @@
         padding: 10px;
         height: calc(100% - 160px);
         overflow: scroll;
+        overflow-x: hidden;
 
         .message {
           display: flex;
@@ -226,7 +228,7 @@
               max-width: max-content;
             }
             img {
-              width: 50%;
+              // width: 50%;
             }
           }
 
