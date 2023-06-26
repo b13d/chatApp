@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./App.css";
 import Register from "./pages/Register";
 import "./style.scss";
@@ -12,21 +12,54 @@ import {
   Route,
   Routes,
   Link,
-  Navigate,
   Outlet,
+  useNavigate,
+  Navigate,
+  redirect,
 } from "react-router-dom";
+import { User } from "firebase/auth";
 import { AuthContext } from "./context/AuthContext";
 
-function App() {
-  const { currentUser } = useContext(AuthContext);
+interface IUseContext {
+  currentUser: User;
+}
 
-  const ProtectedRoute = ({ children }: any): JSX.Element => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
+interface IRoute {
+  children: any;
+}
+
+function App() {
+  const { currentUser }: IUseContext = useContext(AuthContext);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  // const navigate = useNavigate();
+
+  const ProtectedRoute = ({ children }: IRoute) => {
+    // any
+
+    // console.log(currentUser);
+    // console.log(isLogin);
+    console.log(isLogin);
 
     return children;
   };
+
+  useEffect(() => {
+    console.log(currentUser);
+
+    let temp: IRoute = {
+      children: <Home />,
+    };
+    if (
+      currentUser.displayName?.length !== undefined &&
+      currentUser.displayName?.length > 0
+    ) {
+      ProtectedRoute(temp);
+    } else {
+      setIsLogin(false);
+    }
+
+    ProtectedRoute(temp);
+  }, [currentUser, isLogin]); // maybe here error
 
   return (
     <BrowserRouter>
@@ -40,9 +73,9 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
         </Route>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

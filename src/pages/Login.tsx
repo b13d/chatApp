@@ -1,15 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Add from "../img/addAvatar.png";
 import { useNavigate, Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, User } from "firebase/auth";
 import { auth } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+
+interface IUseContext {
+  currentUser: User;
+}
 
 const Login = () => {
   const [err, setErr] = useState(false);
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
-
+  const { currentUser }: IUseContext = useContext(AuthContext);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +30,17 @@ const Login = () => {
       setErr(true);
     }
   };
+
+  useEffect(() => {
+    if (
+      currentUser.displayName?.length !== undefined &&
+      currentUser.displayName.length > 0
+    ) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  }, [currentUser]);
 
   return (
     <div className="formContainer">

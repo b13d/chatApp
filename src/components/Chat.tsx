@@ -1,10 +1,15 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import Cam from "../img/cam.png";
 import Add from "../img/add.png";
 import More from "../img/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
+import { User } from "firebase/auth";
+
+// interface IUseContext {
+//   data: User;
+// }
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
@@ -18,8 +23,14 @@ const Chat = () => {
           <img src={More} alt="" />
         </div>
       </div>
-      <Messages />
-      <Input />
+      {data.user.displayName !== undefined ? (
+        <Messages />
+      ) : (
+        <div className="chose-user">
+          <h1 style={{ margin: 0 }}>Выберите пользователя</h1>
+        </div>
+      )}
+      {data.user.displayName !== undefined ? <Input /> : ""}
     </div>
   );
 };

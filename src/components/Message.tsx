@@ -20,6 +20,7 @@ const Message = ({ message }: any) => {
 
   console.log(message);
 
+
   return (
     <div
       ref={ref}
@@ -34,7 +35,7 @@ const Message = ({ message }: any) => {
           }
           alt=""
         />
-        <span>just now</span>
+        <span>{message.date.seconds}</span>
       </div>
       <div className="messageContent">
         <p>{message.text}</p>

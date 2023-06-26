@@ -233,16 +233,15 @@
           &.owner {
             flex-direction: row-reverse;
 
-            .messageContent{
+            .messageContent {
               align-items: flex-end;
-              
+
               p {
                 background-color: #7b96ec;
                 color: white;
                 border-radius: 10px 0px 10px 10px;
               }
             }
-
           }
         }
       }
@@ -287,5 +286,19 @@
         }
       }
     }
+  }
+}
+
+.chose-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 70px);
+  width: 100%;
+  background-color: ghostwhite;
+  box-shadow: inset 0em 0em 3em rgba(88, 88, 88, 0.486);
+
+  & h1{
+    color: #d5e9fb;
   }
 }
