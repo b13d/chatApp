@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
+import { motion } from "framer-motion";
+import { User } from "firebase/auth";
 
 interface IUserData {
   displayName: string;
@@ -10,11 +12,18 @@ interface IUserData {
   uid: string;
 }
 
+interface IUserChat {
+  date: [seconds: number, nanoseconds: number];
+  lastMessage: { text: string };
+  userInfo: IUserData;
+}
+
 const Chats = () => {
   const [chats, setChats] = useState<DocumentData>([]);
 
   const { currentUser } = useContext(AuthContext);
   const { dispatch, data } = useContext(ChatContext);
+  const [selectedUser, setSelectedUser] = useState<string>("");
 
   useEffect(() => {
     const getChats = () => {
@@ -33,26 +42,37 @@ const Chats = () => {
 
   const handleSelect = async (u: IUserData) => {
     console.log(u);
+
+    setSelectedUser(u.uid);
     dispatch({ type: "CHANGE_USER", payload: u });
   };
+
   return (
-    <div className="chats">
+    <motion.div className="chats">
       {Object.entries(chats)
         ?.sort((a, b) => b[1].date - a[1].date)
-        .map((chat) => (
-          <div
-            className="userChat"
-            key={chat[0]}
-            onClick={() => handleSelect(chat[1].userInfo)}
-          >
-            <img src={chat[1].userInfo.photoURL} alt="" />
-            <div className="userChatInfo">
-              <span>{chat[1].userInfo.displayName}</span>
-              <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
-            </div>
-          </div>
-        ))}
-    </div>
+        .map(
+          (chat: [string, IUserChat]) => (
+            (
+              <motion.div
+                className={
+                  chat[1].userInfo.uid === selectedUser
+                    ? "userSelectedChat"
+                    : "userChat"
+                }
+                key={chat[0]}
+                onClick={() => handleSelect(chat[1].userInfo)}
+              >
+                <img src={chat[1].userInfo.photoURL} alt="" />
+                <div className="userChatInfo">
+                  <span>{chat[1].userInfo.displayName}</span>
+                  <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
+                </div>
+              </motion.div>
+            )
+          )
+        )}
+    </motion.div>
   );
 };
 

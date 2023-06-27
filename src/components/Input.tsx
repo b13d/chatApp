@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import Img from "../img/img.png";
 import Attach from "../img/attach.png";
 import { AuthContext } from "../context/AuthContext";
@@ -93,9 +93,15 @@ const Input = () => {
     }
   };
 
+  const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter") {
+      handleSend();
+    }
+  };
   return (
     <div className="input">
       <input
+        onKeyPress={(e) => handleKeypress(e)}
         ref={refInputText}
         type="text"
         placeholder="Type something..."

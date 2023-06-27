@@ -31,7 +31,7 @@ const Messages = () => {
   return (
     <div className="messages">
       {messages.map((m: IMessageInfo) => {
-        console.log(m);
+        // console.log(m);
         return <Message message={m} key={m.id} />;
       })}
     </div>
