@@ -40,6 +40,7 @@ const Message = ({ message }: any) => {
     >
       <div className="messageInfo">
         <img
+          className="max-[400px]:hidden"
           src={
             message.senderId === currentUser.uid
               ? currentUser.photoURL

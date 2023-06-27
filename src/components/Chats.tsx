@@ -51,27 +51,23 @@ const Chats = () => {
     <motion.div className="chats">
       {Object.entries(chats)
         ?.sort((a, b) => b[1].date - a[1].date)
-        .map(
-          (chat: [string, IUserChat]) => (
-            (
-              <motion.div
-                className={
-                  chat[1].userInfo.uid === selectedUser
-                    ? "userSelectedChat"
-                    : "userChat"
-                }
-                key={chat[0]}
-                onClick={() => handleSelect(chat[1].userInfo)}
-              >
-                <img src={chat[1].userInfo.photoURL} alt="" />
-                <div className="userChatInfo">
-                  <span>{chat[1].userInfo.displayName}</span>
-                  <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
-                </div>
-              </motion.div>
-            )
-          )
-        )}
+        .map((chat: [string, IUserChat]) => (
+          <motion.div
+            className={
+              chat[1].userInfo.uid === selectedUser
+                ? "userSelectedChat"
+                : "userChat"
+            }
+            key={chat[0]}
+            onClick={() => handleSelect(chat[1].userInfo)}
+          >
+            <img className="w-[50px]  max-sm:w-[30px]" src={chat[1].userInfo.photoURL} alt="" />
+            <div className="userChatInfo">
+              <span className="max-sm:text-[14px] text-[18px]">{chat[1].userInfo.displayName}</span>
+              <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
+            </div>
+          </motion.div>
+        ))}
     </motion.div>
   );
 };

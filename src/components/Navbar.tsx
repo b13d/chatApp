@@ -63,7 +63,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar max-sm:w-full">
-      <span className="logo max-sm:hidden">Lama chat</span>
+      <span className="logo max-[1000px]:hidden">Lama chat</span>
       <div className="user flex items-center">
         <input
           onChange={(e) => handleChangeImg(e)}
@@ -72,7 +72,7 @@ const Navbar = () => {
           type="file"
           accept="image/png, image/jpeg"
         />
-        <label className="w-[24px]" htmlFor="change-img">
+        <label className="w-[24px] max-sm:hidden" htmlFor="change-img">
           <img
             style={{ cursor: "pointer" }}
             onClick={() => handleChangeImg}
@@ -80,7 +80,7 @@ const Navbar = () => {
             alt=""
           />
         </label>
-        <span>{userSettings.displayName}</span>
+        <span className="max-sm:hidden">{userSettings.displayName}</span>
         <button className="px-3 py-1" onClick={() => signOut(auth)}>
           <Link
             onClick={() => {

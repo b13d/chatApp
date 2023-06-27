@@ -95,7 +95,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="searchForm">
+      <div className="searchForm max-sm:w-full">
         <input
           type="text"
           placeholder="Find a user"

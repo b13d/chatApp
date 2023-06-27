@@ -11,7 +11,7 @@ const Sidebar = () => {
     <motion.div
       // animate={{ x: -300 }}
       // transition={{ duration: 2 }}
-      className="sidebar"
+      className="sidebar max-sm:w-[25%]"
     >
       <Navbar />
       <Search />
