@@ -179,6 +179,7 @@
       flex: 2;
 
       .chatInfo {
+        position: relative;
         height: 50px;
         background-color: #5d5b8d;
         display: flex;
@@ -320,6 +321,87 @@
   }
 }
 
+.hamburger-lines {
+  display: block;
+  height: 26px;
+  width: 32px;
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-lines .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  background: #0e2431;
+}
+
+.hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.hamburger-lines .line2 {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+
+input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  transform: scaleY(0);
+}
+
+input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+
+.checkbox {
+  position: absolute;
+  display: block;
+  height: 32px;
+  width: 32px;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .chose-user {
+    text-align: center;
+    height: calc(100% - 70px);
+  }
+
+  .chatInfo {
+    height: 20px;
+  }
+
+  .input {
+    height: 20px;
+  }
+
+  .messages {
+    height: calc(100% - 100px);
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 12px; /* ширина для вертикального скролла */
@@ -342,31 +424,28 @@
 
 ::-webkit-scrollbar-button:vertical:start:decrement {
   background: linear-gradient(120deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(240deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(0deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+    linear-gradient(240deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(0deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
   background-color: #f6f8f4;
 }
 
 ::-webkit-scrollbar-button:vertical:end:increment {
-  background:
-      linear-gradient(300deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(60deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(180deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background: linear-gradient(300deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(60deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(180deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
   background-color: #f6f8f4;
 }
 
 ::-webkit-scrollbar-button:horizontal:start:decrement {
-  background:
-      linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background: linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
   background-color: #f6f8f4;
 }
 
 ::-webkit-scrollbar-button:horizontal:end:increment {
-  background:
-      linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
-      linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+  background: linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+    linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
   background-color: #f6f8f4;
 }

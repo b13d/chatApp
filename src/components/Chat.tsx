@@ -16,6 +16,12 @@ const Chat = () => {
   return (
     <div className="chat">
       <div className="chatInfo">
+        <input className="checkbox" type="checkbox" name="" id="" />
+        <div className="hamburger-lines">
+          <span className="line line1"></span>
+          <span className="line line2"></span>
+          <span className="line line3"></span>
+        </div>
         <span>{data.user?.displayName}</span>
         <div className="chatIcons">
           <img src={Cam} alt="" />
