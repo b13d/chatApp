@@ -21,7 +21,6 @@ const Message = ({ message }: any) => {
 
   console.log(message.date);
 
-
   let dataMessage = moment.unix(message.date.seconds).format("L");
   let timeMessage = moment.unix(message.date.seconds).format("LT");
 
@@ -44,8 +43,10 @@ const Message = ({ message }: any) => {
         <span>{timeMessage}</span>
       </div>
       <div className="messageContent">
-        <p>{message.text}</p>
-        {message.img && <img style={{maxHeight: "220px"}} src={message.img} alt="" />}
+        {message.text.length > 0 && <p>{message.text}</p>}
+        {message.img && (
+          <img style={{ maxHeight: "220px" }} src={message.img} alt="" />
+        )}
       </div>
     </div>
   );

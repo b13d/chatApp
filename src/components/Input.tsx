@@ -23,67 +23,73 @@ const Input = () => {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
-    if (refInputText.current !== null) {
-      if (refInputText.current.value.trim().length > 0) {
-        if (img) {
-          const storageRef = ref(storage, uuid());
-          const uploadTask = uploadBytesResumable(storageRef, img);
+    if (
+      (refInputText.current !== null &&
+        refInputText.current.value.trim().length > 0) ||
+      img
+    ) {
+      if (img) {
+        const storageRef = ref(storage, uuid());
+        const uploadTask = uploadBytesResumable(storageRef, img);
 
-          uploadTask.on(
-            "state_changed",
-            null,
-            (error) => {
-              console.log("Error upload file", error);
-              // setErr(true);
-            },
-            () => {
-              getDownloadURL(uploadTask.snapshot.ref).then(
-                async (downloadURL) => {
-                  await updateDoc(doc(db, "chats", data.chatId), {
-                    messages: arrayUnion({
-                      id: uuid(),
-                      text,
-                      senderId: currentUser.uid,
-                      date: Timestamp.now(),
-                      img: downloadURL,
-                    }),
-                  });
-                }
-              );
-            }
-          );
-        } else {
-          await updateDoc(doc(db, "chats", data.chatId), {
-            messages: arrayUnion({
-              id: uuid(),
-              text,
-              senderId: currentUser.uid,
-              date: Timestamp.now(),
-            }),
-          });
-        }
+        // console.log(storage);
+        // console.log(storageRef);
+        // console.log(uploadTask);
 
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-          [data.chatId + ".lastMessage"]: {
-            text,
+        uploadTask.on(
+          "state_changed",
+          null,
+          (error) => {
+            console.log("Error upload file", error);
+            // setErr(true);
           },
-          [data.chatId + ".date"]: serverTimestamp(),
-        });
-
-        await updateDoc(doc(db, "userChats", data.user.uid), {
-          [data.chatId + ".lastMessage"]: {
-            text,
-          },
-          [data.chatId + ".date"]: serverTimestamp(),
-        });
-
-        setText("");
-        setImg(null);
-        refInputText.current.value = "";
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(
+              async (downloadURL) => {
+                await updateDoc(doc(db, "chats", data.chatId), {
+                  messages: arrayUnion({
+                    id: uuid(),
+                    text,
+                    senderId: currentUser.uid,
+                    date: Timestamp.now(),
+                    img: downloadURL,
+                  }),
+                });
+              }
+            );
+          }
+        );
       } else {
-        refInputText.current.value = "";
-        alert("Пустое сообщение");
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text,
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+          }),
+        });
       }
+
+      await updateDoc(doc(db, "userChats", currentUser.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+
+      await updateDoc(doc(db, "userChats", data.user.uid), {
+        [data.chatId + ".lastMessage"]: {
+          text,
+        },
+        [data.chatId + ".date"]: serverTimestamp(),
+      });
+
+      setText("");
+      setImg(null);
+      // refInputText.current !== null ? refInputText.current.value = "" : "";
+    } else {
+      // refInputText.current !== null ? refInputText.current.value = "" : "";
+      alert("Пустое сообщение");
     }
   };
 

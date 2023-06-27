@@ -33,9 +33,7 @@ const Chats = () => {
 
   const handleSelect = async (u: IUserData) => {
     console.log(u);
-    setTimeout(() => {
-      dispatch({ type: "CHANGE_USER", payload: u });
-    }, 1000);
+    dispatch({ type: "CHANGE_USER", payload: u });
   };
   return (
     <div className="chats">

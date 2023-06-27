@@ -196,6 +196,9 @@
         height: calc(100% - 160px);
         overflow: scroll;
         overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 20px 0px;
 
         .message {
           display: flex;
@@ -300,7 +303,7 @@
   background-color: ghostwhite;
   box-shadow: inset 0em 0em 3em rgba(88, 88, 88, 0.486);
 
-  & h1{
+  & h1 {
     color: #d5e9fb;
   }
 }
