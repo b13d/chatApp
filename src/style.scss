@@ -180,7 +180,6 @@
 
       .chatInfo {
         position: relative;
-        height: 50px;
         background-color: #5d5b8d;
         display: flex;
         align-items: center;
@@ -206,7 +205,7 @@
         background-size: contain;
         background-color: #ddddf7;
         padding: 10px;
-        height: calc(100% - 160px);
+        // height: calc(100% - 160px);
         overflow: scroll;
         overflow-x: hidden;
         display: flex;
@@ -265,9 +264,9 @@
       }
 
       .input {
-        height: 50px;
+        // height: 50px;
         background-color: white;
-        padding: 10px;
+        // padding: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -296,7 +295,7 @@
 
           button {
             border: none;
-            padding: 10px 15px;
+            // padding: 10px 15px;
             color: white;
             background-color: #7b96ec;
             cursor: pointer;
@@ -307,26 +306,26 @@
   }
 }
 
-.chose-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100% - 70px);
-  width: 100%;
-  background-color: ghostwhite;
-  box-shadow: inset 0em 0em 3em rgba(88, 88, 88, 0.486);
+// .chose-user {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: calc(100% - 70px);
+//   width: 100%;
+//   background-color: ghostwhite;
+//   box-shadow: inset 0em 0em 3em rgba(88, 88, 88, 0.486);
 
-  & h1 {
-    color: #d5e9fb;
-  }
-}
+//   & h1 {
+//     color: #d5e9fb;
+//   }
+// }
 
 .hamburger-lines {
   display: block;
-  height: 26px;
-  width: 32px;
+  // height: 26px;
+  // width: 32px;
   position: absolute;
-  top: 17px;
+  // top: 13px;
   left: 20px;
   z-index: 2;
   display: flex;
@@ -381,18 +380,7 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
 }
 
 @media (max-width: 850px) {
-  .chose-user {
-    text-align: center;
-    height: calc(100% - 70px);
-  }
 
-  .chatInfo {
-    height: 20px;
-  }
-
-  .input {
-    height: 20px;
-  }
 
   .messages {
     height: calc(100% - 100px);

@@ -99,7 +99,7 @@ const Input = () => {
     }
   };
   return (
-    <div className="input">
+    <div className="input h-[50px] max-[850px]:h-[40px]">
       <input
         onKeyPress={(e) => handleKeypress(e)}
         ref={refInputText}
@@ -108,7 +108,7 @@ const Input = () => {
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
-      <div className="send">
+      <div className="send mr-4">
         <img src={Attach} alt="" />
         <input
           type="file"
@@ -118,10 +118,15 @@ const Input = () => {
             setImg(e.target.files !== null ? e.target.files[0] : null)
           }
         />
-        <label htmlFor="file">
+        <label className="w-[50px]" htmlFor="file">
           <img src={Img} alt="" />
         </label>
-        <button onClick={handleSend}>Send</button>
+        <button
+          className="py-[10px] px-[15px] max-[850px]:py-[6px] max-[850px]:px-[8px]"
+          onClick={handleSend}
+        >
+          Send
+        </button>
       </div>
     </div>
   );

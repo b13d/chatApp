@@ -29,7 +29,7 @@ const Messages = () => {
   }, [data.chatId]);
 
   return (
-    <div className="messages">
+    <div className="messages max-[850px]:h-[calc(100%_-_70px)] h-[calc(100%_-_100px)]">
       {messages.map((m: IMessageInfo) => {
         // console.log(m);
         return <Message message={m} key={m.id} />;

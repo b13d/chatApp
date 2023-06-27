@@ -5,8 +5,14 @@ import Chats from "./Chats";
 import { motion } from "framer-motion";
 
 const Sidebar = () => {
+  const variants = {};
+
   return (
-    <motion.div className="sidebar">
+    <motion.div
+      // animate={{ x: -300 }}
+      // transition={{ duration: 2 }}
+      className="sidebar"
+    >
       <Navbar />
       <Search />
       <Chats />
