@@ -3,6 +3,7 @@ import Message from "./Message";
 import { ChatContext } from "../context/ChatContext";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import { motion, useScroll, useMotionValue } from "framer-motion";
 
 interface IMessageInfo {
   date: [nanoseconds: number, seconds: number];
@@ -14,6 +15,9 @@ interface IMessageInfo {
 const Messages = () => {
   const [messages, setMessages] = useState<DocumentData>([]);
   const { data } = useContext(ChatContext);
+
+  const { scrollYProgress } = useScroll();
+  const y = useMotionValue(0);
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), (doc) => {
@@ -28,13 +32,23 @@ const Messages = () => {
     };
   }, [data.chatId]);
 
+  console.log();
+
+  useEffect(() => {
+    console.log(y);
+    console.log(scrollYProgress);
+  }, [scrollYProgress]);
+
   return (
-    <div className="messages max-[850px]:h-[calc(100%_-_70px)] h-[calc(100%_-_100px)]">
+    <motion.div
+      style={{ y: scrollYProgress }}
+      className="messages max-[850px]:h-[calc(100%_-_70px)] h-[calc(100%_-_100px)]"
+    >
       {messages.map((m: IMessageInfo) => {
         // console.log(m);
         return <Message message={m} key={m.id} />;
       })}
-    </div>
+    </motion.div>
   );
 };
 

@@ -43,17 +43,17 @@ function App() {
     return children;
   };
 
-  useEffect(() => {
-    document.body.addEventListener("touchmove", function (e) {
-      console.log(e);
-      e.preventDefault();
-    });
+  // useEffect(() => {
+  //   document.body.addEventListener("touchmove", function (e) {
+  //     console.log(e);
+  //     e.preventDefault();
+  //   });
 
-    document.body.addEventListener("touchstart", function (e) {
-      console.log(e);
-      e.preventDefault();
-    });
-  }, []);
+  //   document.body.addEventListener("touchstart", function (e) {
+  //     console.log(e);
+  //     e.preventDefault();
+  //   });
+  // }, []);
 
   useEffect(() => {
     // console.log(currentUser);
