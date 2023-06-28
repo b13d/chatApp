@@ -44,7 +44,13 @@ function App() {
   };
 
   useEffect(() => {
-    document.body.addEventListener("scroll", function (e) {
+    document.body.addEventListener("touchmove", function (e) {
+      console.log(e);
+      e.preventDefault();
+    });
+
+    document.body.addEventListener("touchstart", function (e) {
+      console.log(e);
       e.preventDefault();
     });
   }, []);
