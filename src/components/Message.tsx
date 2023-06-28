@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 import moment from "moment";
@@ -11,27 +11,18 @@ const Message = ({ message }: any) => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+  const [currentDate, setCurrentData] = useState<string>("");
 
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let tempRef = ref.current;
-
     tempRef && tempRef.scrollIntoView({ behavior: "smooth" });
   }, [message]);
-
-  // console.log(message.date);
 
   let dataMessage = moment.unix(message.date.seconds).format("L");
   let timeMessage = moment.unix(message.date.seconds).format("LT");
 
-  const variants = {
-    hover: {
-      opacity: 1,
-    },
-  };
-
-  // console.log(timeMessage);
   return (
     <motion.div
       style={{ position: "relative" }}
@@ -40,7 +31,7 @@ const Message = ({ message }: any) => {
     >
       <div className="messageInfo">
         <img
-          className="max-[400px]:hidden"
+          className="max-[425px]:hidden"
           src={
             message.senderId === currentUser.uid
               ? currentUser.photoURL
@@ -48,7 +39,7 @@ const Message = ({ message }: any) => {
           }
           alt=""
         />
-        <motion.span
+        {/* <motion.span
           variants={variants}
           initial={{
             textAlign:
@@ -66,17 +57,39 @@ const Message = ({ message }: any) => {
           style={{ color: "white", fontSize: "12px" }}
         >
           {dataMessage} <br /> {timeMessage}
-        </motion.span>
+        </motion.span> */}
       </div>
       <div className="messageContent">
-        {message.text.length > 0 && <p>{message.text}</p>}
+        {message.text.length > 0 && <p className="relative">{message.text}</p>}
         {message.img && (
           <img
+            className="relative"
             style={{ maxHeight: "220px", borderRadius: "20px" }}
             src={message.img}
             alt=""
           />
         )}
+        <motion.span
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          // variants={variants}
+          initial={{
+            textAlign:
+              message.senderId === currentUser.uid && "owner"
+                ? "right"
+                : "left",
+            opacity: 0,
+            // width: "100%",
+            // height: "100%",
+            position: "relative",
+            bottom: 0,
+            // left: 0,
+            // top: 40,
+          }}
+          style={{ color: "white", fontSize: "12px", fontWeight: 600 }}
+        >
+          {dataMessage} <br /> {timeMessage}
+        </motion.span>
       </div>
     </motion.div>
   );

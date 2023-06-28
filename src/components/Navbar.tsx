@@ -52,7 +52,7 @@ const Navbar = () => {
                   setUserSettings(tempUser);
                 }, 500);
 
-                console.log(url);
+                // console.log(url);
               });
             });
           }
@@ -81,12 +81,12 @@ const Navbar = () => {
           />
         </label>
         <span className="max-sm:hidden">{userSettings.displayName}</span>
-        <button className="px-3 py-1" onClick={() => signOut(auth)}>
+        <button className="px-3 py-1 bg-red-600 rounded-md active:bg-red-800" onClick={() => signOut(auth)}>
           <Link
             onClick={() => {
               handleExitUser();
             }}
-            style={{ textDecoration: "none", color: "lightgray" }}
+            style={{ textDecoration: "none", color: "white" }}
             className="text-[16px]"
             to="/login"
           >

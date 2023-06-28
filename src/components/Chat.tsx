@@ -32,7 +32,7 @@ const Chat = () => {
           this.document.body.clientWidth > 850 &&
           tempSidebar?.style.display !== "block"
         ) {
-          console.log("Я внутри");
+          // console.log("Я внутри");
           let tempSidebar = document.querySelector(
             ".sidebar"
           ) as HTMLDivElement;
@@ -50,12 +50,12 @@ const Chat = () => {
     );
   }, []);
 
-  console.log(tempSidebar);
+  // console.log(tempSidebar);
 
   const handleChangeMenu = () => {
     if (tempSidebar !== undefined && tempSidebar !== null) {
-      console.log(tempSidebar);
-      console.log(tempSidebar.style.display);
+      // console.log(tempSidebar);
+      // console.log(tempSidebar.style.display);
       if (tempSidebar.style.display === "none")
         tempSidebar.style.display = "block";
       else tempSidebar.style.display = "none";
@@ -79,7 +79,7 @@ const Chat = () => {
           </div>
         </div>
 
-        <span className="ml-[50px]">{data.user?.displayName}</span>
+        <span className="">{data.user?.displayName}</span>
         <div className="chatIcons">
           {/* <img src={Cam} alt="" /> */}
           {/* <img src={Add} alt="" /> */}

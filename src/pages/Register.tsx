@@ -65,10 +65,11 @@ const Register = () => {
   };
 
   console.log(err)
+  console.log("🚀 ~ file: Register.tsx:68 ~ Register ~ console.log:", console.log)
 
   return (
     <div className="formContainer">
-      <div className="formWrapper">
+      <div className="formWrapper px-[25px] py-[10px]">
         <span className="logo">Lama Chat</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>

@@ -91,7 +91,7 @@ const Search = () => {
     setUsername("");
   };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="search">
@@ -107,13 +107,13 @@ const Search = () => {
           />
           <button
             onClick={handleSearch}
-            className="text-[#050b44d2] font-semibold border px-1 max-[500px]:text-[12px] border-[#4c4a8df5] rounded-md"
+            className="text-[white] font-semibold  px-2 py-1 max-[500px]:text-[12px] bg-green-600 rounded-md"
           >
             search
           </button>
         </div>
         {err && (
-          <span className="max-[500px]:text-[12px]">User not found!</span>
+          <span className="max-[500px]:text-[12px] text-red-500">User not found!</span>
         )}
       </div>
       {user && (
@@ -124,7 +124,9 @@ const Search = () => {
             alt=""
           />
           <div className="userChatInfo">
-            <span className="max-[500px]:text-[14px] text-[16px]">{user.displayName}</span>
+            <span className="max-[500px]:text-[14px] text-[16px]">
+              {user.displayName}
+            </span>
           </div>
         </div>
       )}

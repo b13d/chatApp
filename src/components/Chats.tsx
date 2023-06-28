@@ -41,7 +41,7 @@ const Chats = () => {
   }, [currentUser.uid]);
 
   const handleSelect = async (u: IUserData) => {
-    console.log(u);
+    // console.log(u);
 
     setSelectedUser(u.uid);
     dispatch({ type: "CHANGE_USER", payload: u });

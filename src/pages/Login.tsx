@@ -20,8 +20,8 @@ const Login = () => {
     const email = (e.currentTarget.children[0] as HTMLInputElement).value;
     const password = (e.currentTarget.children[1] as HTMLInputElement).value;
 
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <div className="formContainer">
-      <div className="formWrapper">
+      <div className="formWrapper px-[25px] py-[10px]">
         <span className="logo">Lama Chat</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>

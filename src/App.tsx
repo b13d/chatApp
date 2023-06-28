@@ -38,13 +38,13 @@ function App() {
 
     // console.log(currentUser);
     // console.log(isLogin);
-    console.log(isLogin);
+    // console.log(isLogin);
 
     return children;
   };
 
   useEffect(() => {
-    console.log(currentUser);
+    // console.log(currentUser);
 
     let temp: IRoute = {
       children: <Home />,
