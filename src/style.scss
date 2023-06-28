@@ -1,3 +1,13 @@
+#root::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+  height: 100%;
+}
+
+// ::-webkit-scrollbar {
+//   display: none;
+// }
+
 .formContainer {
   background-color: #a7bcff;
   height: 100vh;
@@ -212,7 +222,6 @@
 
         .message {
           display: flex;
-          
 
           .messageInfo {
             display: flex;
@@ -378,8 +387,6 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
 }
 
 @media (max-width: 850px) {
-
-
   .messages {
     height: calc(100% - 90px);
   }
