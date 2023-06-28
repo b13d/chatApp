@@ -11,7 +11,7 @@ const Sidebar = () => {
     <motion.div
       // animate={{ x: -300 }}
       // transition={{ duration: 2 }}
-      className="sidebar max-sm:w-[25%]"
+      className="sidebar  max-[850px]:w-[25%] overflow-hidden shadow-[inset_6px_56px_rgba(1,1,1,0.3)]"
     >
       <Navbar />
       <Search />

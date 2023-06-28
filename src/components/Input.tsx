@@ -99,7 +99,7 @@ const Input = () => {
     }
   };
   return (
-    <div className="input h-[50px] max-[850px]:h-[40px]">
+    <div className="px-2 input h-[50px] max-[850px]:h-[40px]">
       <input
         onKeyPress={(e) => handleKeypress(e)}
         ref={refInputText}
@@ -107,9 +107,10 @@ const Input = () => {
         placeholder="Type something..."
         onChange={(e) => setText(e.target.value)}
         value={text}
+        className="sm:w-[70%] w-[40%] max-sm:text-[12px]"
       />
-      <div className="send mr-4">
-        <img src={Attach} alt="" />
+      <div className="send">
+        <img className="max-sm:hidden" src={Attach} alt="" />
         <input
           type="file"
           style={{ display: "none" }}
@@ -118,11 +119,11 @@ const Input = () => {
             setImg(e.target.files !== null ? e.target.files[0] : null)
           }
         />
-        <label className="w-[50px]" htmlFor="file">
+        <label className="w-[24px]" htmlFor="file">
           <img src={Img} alt="" />
         </label>
         <button
-          className="py-[10px] px-[15px] max-[850px]:py-[6px] max-[850px]:px-[8px]"
+          className="py-[10px] px-[15px] max-[850px]:py-[6px] max-[850px]:px-[8px] rounded-md"
           onClick={handleSend}
         >
           Send

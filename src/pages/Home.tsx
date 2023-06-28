@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="container max-sm:w-[90%] sm:w-[65%]">
+      <div className="container max-[850px]:w-[90%] min-[851px]:w-[65%]">
         <Sidebar />
         <Chat />
       </div>

@@ -14,6 +14,9 @@ import { User } from "firebase/auth";
 const Chat = () => {
   const { data } = useContext(ChatContext);
   const [tempSidebar, setTempSidebar] = useState<HTMLDivElement>();
+  const [currentWidth, setCurrentWidth] = useState<number>(
+    document.body.clientWidth
+  );
 
   useEffect(() => {
     let tempSidebar = document.querySelector(".sidebar") as HTMLDivElement;
@@ -21,8 +24,36 @@ const Chat = () => {
     setTempSidebar(tempSidebar);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      function (event) {
+        if (
+          this.document.body.clientWidth > 850 &&
+          tempSidebar?.style.display !== "block"
+        ) {
+          console.log("Я внутри");
+          let tempSidebar = document.querySelector(
+            ".sidebar"
+          ) as HTMLDivElement;
+
+          tempSidebar.style.display = "block";
+
+          setTempSidebar(tempSidebar);
+          // debugger
+          // document.querySelector(".sidebar") as HTMLDivElement
+          // tempSidebar.style.display = "block";
+        }
+        // console.log(document.body.clientWidth);
+      },
+      true
+    );
+  }, []);
+
+  console.log(tempSidebar);
+
   const handleChangeMenu = () => {
-    if (tempSidebar !== undefined) {
+    if (tempSidebar !== undefined && tempSidebar !== null) {
       console.log(tempSidebar);
       console.log(tempSidebar.style.display);
       if (tempSidebar.style.display === "none")

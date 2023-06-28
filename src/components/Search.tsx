@@ -96,18 +96,33 @@ const Search = () => {
   return (
     <div className="search">
       <div className="searchForm max-sm:w-full">
-        <input
-          type="text"
-          placeholder="Find a user"
-          onKeyDown={handleKey}
-          onChange={(e) => setUsername(e.target.value)}
-          value={userName}
-        />
+        <div className="flex gap-1 items-start flex-col">
+          <input
+            className="w-full border-b-2 max-[500px]:text-[12px]"
+            type="text"
+            placeholder="Find a user"
+            onKeyDown={handleKey}
+            onChange={(e) => setUsername(e.target.value)}
+            value={userName}
+          />
+          <button
+            onClick={handleSearch}
+            className="text-[#050b44d2] font-semibold border px-1 max-[500px]:text-[12px] border-[#4c4a8df5] rounded-md"
+          >
+            search
+          </button>
+        </div>
+        {err && (
+          <span className="max-[500px]:text-[12px]">User not found!</span>
+        )}
       </div>
-      {err && <span>User not found!</span>}
       {user && (
         <div className="userChat" onClick={handleSelect}>
-          <img src={user.photoURL !== null ? user.photoURL : ""} alt="" />
+          <img
+            className="h-[50px]"
+            src={user.photoURL !== null ? user.photoURL : ""}
+            alt=""
+          />
           <div className="userChatInfo">
             <span>{user.displayName}</span>
           </div>

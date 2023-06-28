@@ -62,7 +62,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar max-sm:w-full">
+    <div className="navbar max-[850px]:w-full">
       <span className="logo max-[1000px]:hidden">Lama chat</span>
       <div className="user flex items-center">
         <input

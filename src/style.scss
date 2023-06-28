@@ -68,7 +68,7 @@
 
 .home {
   background: url(./img/bg-fon.jpg);
-  background-size: contain;
+  background-size: cover;
   background-color: #a7bcff;
   height: 100vh;
   display: flex;
@@ -86,12 +86,12 @@
 
     .sidebar {
       flex: 1;
-      background-color: #5d5b8d;
+      background-color: #5d5b8df5;
 
       .navbar {
         display: flex;
         align-items: center;
-        background-color: #2f2d5c;
+        background-color: #2f2d5cf5;
         height: 50px;
         padding: 10px;
         justify-content: space-between;
@@ -123,13 +123,11 @@
         }
       }
       .search {
-        border-bottom: 1px solid gray;
-
         .searchForm {
           padding: 10px;
           input {
             background-color: transparent;
-            border: none;
+            // border: none;
             color: white;
             outline: none;
 
@@ -180,7 +178,7 @@
 
       .chatInfo {
         position: relative;
-        background-color: #5d5b8d;
+        background-color: #5d5b8df5;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -272,7 +270,7 @@
         justify-content: space-between;
 
         input {
-          width: 100%;
+          // width: 100%;
           outline: none;
           border: none;
           color: #2f2d5c;
@@ -384,10 +382,6 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
 
   .messages {
     height: calc(100% - 90px);
-  }
-
-  .sidebar {
-    display: none;
   }
 }
 
