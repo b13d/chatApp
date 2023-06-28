@@ -44,10 +44,9 @@ function App() {
   };
 
   useEffect(() => {
-    // document.body.addEventListener("touchmove", function (e) {
-    //   console.log(e)
-    //   e.preventDefault();
-    // });
+    document.body.addEventListener("scroll", function (e) {
+      e.preventDefault();
+    });
   }, []);
 
   useEffect(() => {
