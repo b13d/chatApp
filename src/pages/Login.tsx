@@ -43,7 +43,7 @@ const Login = () => {
   }, [currentUser]);
 
   return (
-    <div className="formContainer">
+    <div className="formContainer overflow-hidden">
       <div className="formWrapper px-[25px] py-[10px]">
         <span className="logo">Lama Chat</span>
         <span className="title">Login</span>

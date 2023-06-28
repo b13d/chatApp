@@ -54,8 +54,7 @@ const Register = () => {
             });
 
             await setDoc(doc(db, "userChats", res.user.uid), {});
-            navigate("/")
-
+            navigate("/");
           });
         }
       );
@@ -64,18 +63,21 @@ const Register = () => {
     }
   };
 
-  console.log(err)
-  console.log("🚀 ~ file: Register.tsx:68 ~ Register ~ console.log:", console.log)
+  console.log(err);
+  console.log(
+    "🚀 ~ file: Register.tsx:68 ~ Register ~ console.log:",
+    console.log
+  );
 
   return (
-    <div className="formContainer">
+    <div className="formContainer overflow-hidden">
       <div className="formWrapper px-[25px] py-[10px]">
         <span className="logo">Lama Chat</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="display name" />
           <input type="email" placeholder="email" />
-          <input type="password" placeholder="password" />
+          <input minLength={6} type="password" placeholder="password" />
           <input style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="img-file" />
@@ -84,7 +86,9 @@ const Register = () => {
           <button>Sign up</button>
           {err && <span>Something went wrong</span>}
         </form>
-        <p>You do have an account? <Link to="/login">Login</Link></p>
+        <p>
+          You do have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     </div>
   );
