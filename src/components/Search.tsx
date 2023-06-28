@@ -119,12 +119,12 @@ const Search = () => {
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <img
-            className="h-[50px]"
+            className="max-[500px]:h-[30px] h-[50px]"
             src={user.photoURL !== null ? user.photoURL : ""}
             alt=""
           />
           <div className="userChatInfo">
-            <span>{user.displayName}</span>
+            <span className="max-[500px]:text-[14px] text-[16px]">{user.displayName}</span>
           </div>
         </div>
       )}

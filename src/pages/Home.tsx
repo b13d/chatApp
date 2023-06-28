@@ -18,7 +18,7 @@ const Home = () => {
   }, [currentUser]);
 
   return (
-    <div className="home">
+    <div className="home overflow-hidden">
       <div className="container max-[850px]:w-[90%] min-[851px]:w-[65%]">
         <Sidebar />
         <Chat />
