@@ -44,6 +44,10 @@ function App() {
   };
 
   useEffect(() => {
+
+  }, []);
+
+  useEffect(() => {
     // console.log(currentUser);
 
     let temp: IRoute = {
