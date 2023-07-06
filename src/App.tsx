@@ -25,7 +25,7 @@ interface IUseContext {
 }
 
 interface IRoute {
-  children: any;
+  children: React.JSX.Element;
 }
 
 function App() {
@@ -34,30 +34,10 @@ function App() {
   // const navigate = useNavigate();
 
   const ProtectedRoute = ({ children }: IRoute) => {
-    // any
-
-    // console.log(currentUser);
-    // console.log(isLogin);
-    // console.log(isLogin);
-
     return children;
   };
 
-  // useEffect(() => {
-  //   document.body.addEventListener("touchmove", function (e) {
-  //     console.log(e);
-  //     e.preventDefault();
-  //   });
-
-  //   document.body.addEventListener("touchstart", function (e) {
-  //     console.log(e);
-  //     e.preventDefault();
-  //   });
-  // }, []);
-
   useEffect(() => {
-    // console.log(currentUser);
-
     let temp: IRoute = {
       children: <Home />,
     };

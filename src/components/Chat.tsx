@@ -7,6 +7,8 @@ import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
 import { User } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
+import { deleteField, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 // interface IUseContext {
 //   data: User;
@@ -15,10 +17,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const Chat = () => {
   const { data } = useContext(ChatContext);
   const [tempSidebar, setTempSidebar] = useState<HTMLDivElement>();
-  // const [currentWidth, setCurrentWidth] = useState<number>(
-  //   document.body.clientWidth
-  // );
-
   const [showMore, setShowMore] = useState<boolean>(false);
 
   useEffect(() => {
@@ -64,6 +62,16 @@ const Chat = () => {
 
   console.log(data.user);
 
+  const handleClearChat = async () => {
+    const chatRef = doc(db, "chats", data.chatId);
+
+    // Remove the 'capital' field from the document
+    await updateDoc(chatRef, {
+      messages: deleteField(),
+    });
+  };
+  const handleDeleteChat = () => {};
+
   return (
     <div className="chat">
       <div className="chatInfo h-[50px] ">
@@ -101,10 +109,20 @@ const Chat = () => {
                   className="bg-[#e9e9e9] shadow-xl absolute right-1 flex flex-col max-[400px]:w-[150px]  w-[200px] h-[200px] top-9 z-50 rounded-md"
                 >
                   <ul className="flex flex-col flex-1 py-2 px-2">
-                    <li className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f36] active:bg-[#1f1f1f36]  deleteText flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] ">
+                    <li
+                      onClick={() => {
+                        handleClearChat();
+                      }}
+                      className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f36] active:bg-[#1f1f1f36]  deleteText flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] "
+                    >
                       Очистить чат
                     </li>
-                    <li className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f2d] active:bg-[#1f1f1f36] deleteChat flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] ">
+                    <li
+                      onClick={() => {
+                        handleDeleteChat();
+                      }}
+                      className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f2d] active:bg-[#1f1f1f36] deleteChat flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] "
+                    >
                       Удалить чат
                     </li>
 

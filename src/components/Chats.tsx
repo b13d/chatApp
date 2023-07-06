@@ -47,6 +47,7 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 
+
   return (
     <motion.div className="chats">
       {Object.entries(chats)
@@ -61,9 +62,15 @@ const Chats = () => {
             key={chat[0]}
             onClick={() => handleSelect(chat[1].userInfo)}
           >
-            <img className="w-[50px]  max-sm:w-[30px]" src={chat[1].userInfo.photoURL} alt="" />
+            <img
+              className="w-[50px]  max-sm:w-[30px]"
+              src={chat[1].userInfo.photoURL}
+              alt=""
+            />
             <div className="userChatInfo">
-              <span className="max-sm:text-[14px] text-[18px]">{chat[1].userInfo.displayName}</span>
+              <span className="max-sm:text-[14px] text-[18px]">
+                {chat[1].userInfo.displayName}
+              </span>
               <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
             </div>
           </motion.div>

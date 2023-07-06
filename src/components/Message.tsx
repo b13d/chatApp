@@ -23,10 +23,12 @@ interface IMessageInfo {
   img?: string;
 }
 
-const Message = (message: IMessageInfo) => {
-  // ANY ANY ANY
+interface IPropsMessage {
+  message: IMessageInfo;
+  chatId: string;
+}
 
-  console.log(message);
+const Message = ({ message, chatId }: IPropsMessage) => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
