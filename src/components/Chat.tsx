@@ -6,6 +6,7 @@ import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
 import { User } from "firebase/auth";
+import { motion, AnimatePresence } from "framer-motion";
 
 // interface IUseContext {
 //   data: User;
@@ -14,9 +15,11 @@ import { User } from "firebase/auth";
 const Chat = () => {
   const { data } = useContext(ChatContext);
   const [tempSidebar, setTempSidebar] = useState<HTMLDivElement>();
-  const [currentWidth, setCurrentWidth] = useState<number>(
-    document.body.clientWidth
-  );
+  // const [currentWidth, setCurrentWidth] = useState<number>(
+  //   document.body.clientWidth
+  // );
+
+  const [showMore, setShowMore] = useState<boolean>(false);
 
   useEffect(() => {
     let tempSidebar = document.querySelector(".sidebar") as HTMLDivElement;
@@ -32,7 +35,6 @@ const Chat = () => {
           this.document.body.clientWidth > 850 &&
           tempSidebar?.style.display !== "block"
         ) {
-          // console.log("Я внутри");
           let tempSidebar = document.querySelector(
             ".sidebar"
           ) as HTMLDivElement;
@@ -40,17 +42,11 @@ const Chat = () => {
           tempSidebar.style.display = "block";
 
           setTempSidebar(tempSidebar);
-          // debugger
-          // document.querySelector(".sidebar") as HTMLDivElement
-          // tempSidebar.style.display = "block";
         }
-        // console.log(document.body.clientWidth);
       },
       true
     );
   }, []);
-
-  // console.log(tempSidebar);
 
   const handleChangeMenu = () => {
     if (tempSidebar !== undefined && tempSidebar !== null) {
@@ -61,6 +57,13 @@ const Chat = () => {
       else tempSidebar.style.display = "none";
     }
   };
+
+  const handleClickMore = () => {
+    setShowMore(showMore === true ? false : true);
+  };
+
+  console.log(data.user);
+
   return (
     <div className="chat">
       <div className="chatInfo h-[50px] ">
@@ -80,11 +83,41 @@ const Chat = () => {
         </div>
 
         <span className="">{data.user?.displayName}</span>
-        <div className="chatIcons">
-          {/* <img src={Cam} alt="" /> */}
-          {/* <img src={Add} alt="" /> */}
-          <img src={More} alt="" />
-        </div>
+        {data.user.displayName !== undefined && (
+          <div onClick={() => handleClickMore()} className="relative chatIcons">
+            <AnimatePresence initial={false}>
+              {showMore && (
+                <motion.div
+                  key="motion"
+                  initial={{ opacity: 0, y: -20, x: 20 }}
+                  animate={{ opacity: 1, y: 0, x: 0 }}
+                  exit={{
+                    opacity: 0,
+                    y: -20,
+                    x: 20,
+                    transition: { duration: 0.5 },
+                  }}
+                  transition={{ type: "tween" }}
+                  className="bg-[#e9e9e9] shadow-xl absolute right-1 flex flex-col max-[400px]:w-[150px]  w-[200px] h-[200px] top-9 z-50 rounded-md"
+                >
+                  <ul className="flex flex-col flex-1 py-2 px-2">
+                    <li className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f36] active:bg-[#1f1f1f36]  deleteText flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] ">
+                      Очистить чат
+                    </li>
+                    <li className="cursor-pointer  items-center duration-300 max-[400px]:text-[13px] sm:hover:bg-[#1f1f1f2d] active:bg-[#1f1f1f36] deleteChat flex gap-2 w-full font-medium text-[#1b1b1b] h-[25%] ">
+                      Удалить чат
+                    </li>
+
+                    <li className="w-full h-[25%] "></li>
+                  </ul>
+                </motion.div>
+              )}
+              {/* <img src={Cam} alt="" /> */}
+              {/* <img src={Add} alt="" /> */}
+              <img src={More} alt="more-icon" />
+            </AnimatePresence>
+          </div>
+        )}
       </div>
       {data.user.displayName !== undefined ? (
         <Messages />

@@ -110,7 +110,7 @@ const Input = () => {
         className="sm:w-[70%] w-[40%] max-sm:text-[12px]"
       />
       <div className="send">
-        <img className="max-sm:hidden" src={Attach} alt="" />
+        {/* <img className="max-sm:hidden" src={Attach} alt="" />
         <input
           type="file"
           style={{ display: "none" }}
@@ -118,7 +118,7 @@ const Input = () => {
           onChange={(e) =>
             setImg(e.target.files !== null ? e.target.files[0] : null)
           }
-        />
+        /> */}
         <label className="w-[24px]" htmlFor="file">
           <img src={Img} alt="" />
         </label>

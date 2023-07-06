@@ -4,10 +4,29 @@ import { ChatContext } from "../context/ChatContext";
 import moment from "moment";
 import { motion } from "framer-motion";
 
-const Message = ({ message }: any) => {
+// interface IPropsMessage {
+//   id: string;
+//   text: string;
+//   senderId: string;
+//   date: {
+//     seconds: number;
+//     milliseconds: number;
+//   };
+//   img?: string;
+// }
+
+interface IMessageInfo {
+  date: { nanoseconds: number; seconds: number };
+  id: string;
+  senderId: string;
+  text: string;
+  img?: string;
+}
+
+const Message = (message: IMessageInfo) => {
   // ANY ANY ANY
 
-  // console.log(message);
+  console.log(message);
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
@@ -39,25 +58,6 @@ const Message = ({ message }: any) => {
           }
           alt=""
         />
-        {/* <motion.span
-          variants={variants}
-          initial={{
-            textAlign:
-              message.senderId === currentUser.uid && "owner"
-                ? "right"
-                : "left",
-            opacity: 0,
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            left: 0,
-            top: 40,
-          }}
-          whileHover="hover"
-          style={{ color: "white", fontSize: "12px" }}
-        >
-          {dataMessage} <br /> {timeMessage}
-        </motion.span> */}
       </div>
       <div className="messageContent">
         {message.text.length > 0 && <p className="relative">{message.text}</p>}

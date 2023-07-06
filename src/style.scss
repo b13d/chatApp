@@ -389,6 +389,52 @@ input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
   cursor: pointer;
 }
 
+
+@media (max-width: 400px) {
+  .deleteChat::before {
+    height: 25px;
+    width: 25px;
+  }
+  
+  .deleteText::before {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+@media (min-width: 400px) {
+  .deleteChat::before {
+    height: 30px;
+    width: 30px;
+  }
+  
+  .deleteText::before {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.deleteChat::before {
+  content: "";
+
+  background-image: url("./img/delete-chat.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  display: block;
+}
+
+.deleteText::before {
+  content: "";
+
+  background-image: url("./img/delete-text.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  display: block;
+}
+
+
 @media (max-width: 850px) {
   .messages {
     height: calc(100% - 90px);

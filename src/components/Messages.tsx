@@ -6,7 +6,7 @@ import { db } from "../firebase";
 import { motion, useScroll, useMotionValue } from "framer-motion";
 
 interface IMessageInfo {
-  date: [nanoseconds: number, seconds: number];
+  date: {nanoseconds: number, seconds: number};
   id: string;
   senderId: string;
   text: string;
@@ -45,8 +45,7 @@ const Messages = () => {
       className="messages max-[850px]:h-[calc(100%_-_70px)] h-[calc(100%_-_100px)]"
     >
       {messages.map((m: IMessageInfo) => {
-        // console.log(m);
-        return <Message message={m} key={m.id} />;
+        return <Message {...m} key={m.id} />;
       })}
     </motion.div>
   );
