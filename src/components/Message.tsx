@@ -29,12 +29,13 @@ interface IPropsMessage {
 }
 
 const Message = ({ message, chatId }: IPropsMessage) => {
-
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const [currentDate, setCurrentData] = useState<string>("");
 
   const ref = useRef<HTMLInputElement>(null);
+
+  console.log(message);
 
   useEffect(() => {
     let tempRef = ref.current;
@@ -43,6 +44,10 @@ const Message = ({ message, chatId }: IPropsMessage) => {
 
   let dataMessage = moment.unix(message.date.seconds).format("L");
   let timeMessage = moment.unix(message.date.seconds).format("LT");
+
+  console.log(message);
+  console.log(message.text);
+  console.log(message.text.length);
 
   return (
     <motion.div

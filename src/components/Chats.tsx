@@ -47,7 +47,6 @@ const Chats = () => {
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 
-
   return (
     <motion.div className="chats">
       {Object.entries(chats)
@@ -71,7 +70,11 @@ const Chats = () => {
               <span className="max-sm:text-[14px] text-[18px]">
                 {chat[1].userInfo.displayName}
               </span>
-              <p style={{ margin: 0 }}>{chat[1].lastMessage?.text}</p>
+              <p style={{ margin: 0 }}>
+                {chat[1].lastMessage?.text.length > 50
+                  ? chat[1].lastMessage?.text.slice(0, 50) + "..."
+                  : chat[1].lastMessage?.text}
+              </p>
             </div>
           </motion.div>
         ))}
