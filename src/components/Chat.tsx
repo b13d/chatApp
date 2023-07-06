@@ -7,18 +7,26 @@ import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
 import { User } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
-import { deleteField, doc, updateDoc } from "firebase/firestore";
+import { deleteField, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
 
 // interface IUseContext {
 //   data: User;
 // }
 
+interface IUserData {
+  displayName: string | undefined;
+  photoURL: string | undefined;
+  uid: string | undefined;
+}
+
 const Chat = () => {
-  const { data } = useContext(ChatContext);
+  const { data, dispatch } = useContext(ChatContext);
   const [tempSidebar, setTempSidebar] = useState<HTMLDivElement>();
   const [showMore, setShowMore] = useState<boolean>(false);
 
+  const { currentUser } = useContext(AuthContext);
   useEffect(() => {
     let tempSidebar = document.querySelector(".sidebar") as HTMLDivElement;
 
@@ -46,6 +54,8 @@ const Chat = () => {
     );
   }, []);
 
+  console.log(currentUser);
+
   const handleChangeMenu = () => {
     if (tempSidebar !== undefined && tempSidebar !== null) {
       // console.log(tempSidebar);
@@ -60,7 +70,8 @@ const Chat = () => {
     setShowMore(showMore === true ? false : true);
   };
 
-  console.log(data.user);
+  console.log(currentUser);
+  console.log(data);
 
   const handleClearChat = async () => {
     const chatRef = doc(db, "chats", data.chatId);
@@ -70,7 +81,26 @@ const Chat = () => {
       messages: deleteField(),
     });
   };
-  const handleDeleteChat = () => {};
+  const handleDeleteChat = async () => {
+    const userChatRef = doc(db, "userChats", currentUser.uid);
+
+    let nameField = data.chatId;
+
+    await updateDoc(userChatRef, {
+      [nameField]: deleteField(),
+    });
+
+    await deleteDoc(doc(db, "chats", data.chatId));
+
+    let clearUser: IUserData = {
+      displayName: undefined,
+      photoURL: undefined,
+      uid: undefined,
+    };
+
+    dispatch({ type: "CHANGE_USER", payload: clearUser });
+    // window.location.reload();
+  };
 
   return (
     <div className="chat">

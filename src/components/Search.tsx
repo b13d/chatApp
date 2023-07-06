@@ -52,7 +52,6 @@ const Search = () => {
   };
 
   const handleSelect = async () => {
-    // debugger
     const combinedId =
       user &&
       (currentUser.uid > user.uid
@@ -60,6 +59,21 @@ const Search = () => {
         : user.uid + currentUser.uid);
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
+
+      console.log(res);
+
+      if (user !== undefined) {
+        let firstUser = await getDoc(doc(db, "userChats", user.uid));
+        let secondUser = await getDoc(doc(db, "userChats", currentUser.uid));
+
+        if (!firstUser.exists()) {
+          await setDoc(doc(db, "userChats", user.uid), {});
+        }
+
+        if (!secondUser.exists()) {
+          await setDoc(doc(db, "userChats", currentUser.uid), {});
+        }
+      }
 
       if (!res.exists()) {
         await setDoc(doc(db, "chats", combinedId), {
@@ -85,7 +99,9 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
     setUser(undefined);
     setUsername("");
@@ -113,7 +129,9 @@ const Search = () => {
           </button>
         </div>
         {err && (
-          <span className="max-[500px]:text-[12px] text-red-500">User not found!</span>
+          <span className="max-[500px]:text-[12px] text-red-500">
+            User not found!
+          </span>
         )}
       </div>
       {user && (
